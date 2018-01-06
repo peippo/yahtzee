@@ -1,8 +1,8 @@
-<img src="http://www.lumous.com/yahtzee/images/banner.png" alt="Banner image">
+<img src="https://peippo.github.io/yahtzee/images/banner.png" alt="Banner image">
 
-# Yahtzee .JS
+# Yahtzee! .JS
 
-Yahtzee dice game in Javascript.
+Yahtzee dice game in Javascript - my first real programming project.
 
 The objective of Yahtzee is to get as many points as possible by rolling five dice and getting certain dice combinations.
 
@@ -10,4 +10,4 @@ The game consists of 13 rounds. The round starts by rolling all the dice. After 
 
 [Rules on Wikipedia](https://en.wikipedia.org/wiki/Yahtzee#Rules)
 
-### <a href="http://www.lumous.com/yahtzee">Open the project</a>
+### <a href="https://peippo.github.io/yahtzee/">Open the project</a>
