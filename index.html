@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Yahtzee! JS</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700|Patrick+Hand|Fredoka+One' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="site-wrapper">
+		<div id="site-canvas">
+			<div id="rules-menu">
+				<button id="closeRulesButton"><i class="fa fa-close fa-2x"></i></button>
+				<ul class="tabs">
+					<li>
+						<input type="radio" name="tabs" id="tab1" checked />
+						<label for="tab1">Rules</label>
+							<div id="tab-content1" class="tab-content">
+							<p><strong>The objective of Yahtzee is to get as many points as possible by rolling five dice and getting certain dice combinations.</strong></p>
+
+							<p>The game consists of 13 rounds. The round starts by rolling all the dice. After this either score the current roll, or re-roll any or all of the five dice. The dice can be rolled a total of three times &mdash; the initial roll, plus two re-rolls of any or all dice. After rolling three times, the roll must be scored. Any roll can be scored in any category at any time, even if the resulting score is zero.</p>
+
+							<p>The game continues until all 13 score categories have been filled.</p>
+						</div>
+					</li>
+					<li>
+						<input type="radio" name="tabs" id="tab2" />
+						<label for="tab2">Scoring</label>
+							<div id="tab-content2" class="tab-content">
+								<p>All upper section categories score a sum of the specified die face. If the total score of all upper section categories is 63 or more, an extra bonus of 35 is added.</p>
+
+								<p><strong>3 of a kind</strong>: Get three dice with the same number. Scores the sum of <u>all</u> dice.<br>
+								<strong>4 of a kind</strong>: Get four dice with the same number. Scores the sum of <u>all</u> dice.<br>
+								<strong>Full House</strong>: Get three of a kind and a pair. Scores 25 points.<br>
+								<strong>Small Straight</strong>: Get four sequential dice. Scores 30 points.<br>
+								<strong>Large Straight</strong>: Get five sequential dice. Scores 40 points.<br>
+								<strong>Chance</strong>: You can put anything into chance. Scores the sum of the dice.<br>
+								<strong>YAHTZEE</strong>: Five of a kind. Scores 50 points. Each additional Yahtzee scores 100 extra points.<br></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div id="scoresheet-menu">
+				<button id="closeScoreSheetButton"><i class="fa fa-close fa-2x"></i></button>
+				<div id="scoreSheet">
+					<table>
+						<thead>
+							<tr>
+								<th class="section-heading">Upper section</th>
+								<th>Score</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Aces</td>
+								<td id="1-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Twos</td>
+								<td id="2-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Threes</td>
+								<td id="3-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Fours</td>
+								<td id="4-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Fives</td>
+								<td id="5-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Sixes</td>
+								<td id="6-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr id="upper-bonus">
+								<td>Bonus</td>
+								<td id="upper-bonus-score"></td>
+							</tr>
+							<tr>
+								<th class="section-heading">Lower section</th>
+								<th>Score</th>
+							</tr>
+							<tr>
+								<td>3 of a kind</td>
+								<td id="7-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>4 of a kind</td>
+								<td id="8-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Full House</td>
+								<td id="9-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Small Straight</td>
+								<td id="10-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Large Straight</td>
+								<td id="11-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Yahtzee</td>
+								<td id="12-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+							<tr>
+								<td>Chance</td>
+								<td id="13-score"></td>
+								<td class="speculative-score"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<button id="rollDiceButton"><i class="fa fa-hand-rock-o fa-2x"></i> ROLL<span class="extra-roll-button-text">&nbsp;THE DICE</span></button>
+
+			<div id="round-number-wrapper">
+				<span id="round-number" class="round-number">1</span><span class="round-number-separator"></span><span class="total-rounds">13</span>
+			</div>
+
+			<h1 id="logo">Yahtzee! <span>. JS</span></h1>
+			<button id="openScoreSheetButton"><i class="fa fa-pencil-square-o fa-2x"></i> SCORES</button>
+
+			<h1 id="scoreMessage">Game over!<br>Your total score is <span class="score-total"><i class="fa fa-trophy"></i> <span id="finalScore"></span></span></h1>
+
+			<div id="diceArea"></div>
+
+			<div id="selectedDiceArea"></div>
+			<button id="openRulesButton"><i class="fa fa-question-circle"></i> Rules &amp; scoring info</button>
+		</div>
+	</div>
+<script src="js/hammer.min.js"></script>
+<script src="js/hammer-time.min.js"></script>
+<script src="js/yahtzee.js"></script>
+<script src="js/scoring.js"></script>
+</body>
+</html>
